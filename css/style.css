@@ -1,0 +1,38 @@
+#home {
+    width: 700px;
+    height: 500px;
+    background-size: auto 350px;
+
+}
+
+button {
+    background-color: green;
+    color: antiquewhite;
+    border: none;
+    bottom: 0;
+    height: 30px;
+    font-size: 12pt;
+    float: left;
+    width: 90px;
+    margin: 10px 0 0 0;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+button:disabled {
+    background-color: grey;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    width: 250px;
+    margin: 18px 0 5px 8px;
+    float: left;
+}
+
+.game {
+    margin: auto;
+}
