@@ -1,0 +1,23 @@
+{
+  "name": "snake-game",
+  "version": "1.0.0",
+  "description": "A snake game programmed in javascript, from a tutorial by Christopher Okhravi.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Holgermueller/snake-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Holgermueller/snake-game/issues"
+  },
+  "homepage": "https://github.com/Holgermueller/snake-game#readme",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-google": "^0.9.1"
+  }
+}
