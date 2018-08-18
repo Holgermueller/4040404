@@ -1,2 +1,2 @@
 # snake-game
-A snake game programmed in javascript, from a tutorial by Christopher Okhravi.
+A snake game programmed in javascript, from a tutorial by Code Explained.
