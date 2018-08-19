@@ -28,8 +28,10 @@ let score = 0;
 
 // draw everything on canvas
 function draw() {
+    // get ground on dom
   ctx.drawImage(ground, 0, 0);
 
+  // get snake on dom
   for ( let i = 0; i < snake.length; i++) {
     ctx.fillStyle = ( i == 0 ) ? 'green' : 'white';
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
@@ -37,8 +39,13 @@ function draw() {
     ctx.strokeStyle = 'red';
     ctx.strokeRect(snake[i].x, snake[i].y, box, box);
   };
-
+// get apple on dom
   ctx.drawImage(foodImg, apple.x, apple.y);
+
+  // get score on dom
+  ctx.fillStyle = 'white';
+  ctx.font = '45px Changa one';
+  ctx.fillText(score, 2 * box, 1.6 * box);
 
 };
 
