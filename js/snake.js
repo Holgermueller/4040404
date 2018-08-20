@@ -26,6 +26,26 @@ let apple = {
 // create score
 let score = 0;
 
+// control the snake
+let d;
+
+document.addEventListener('keydown', direction);
+
+// direction function
+function direction(e) {
+  let key = e.keyCode;
+  if (e.keyCode === 37 && d != 'RIGHT') {
+    d = 'LEFT';
+    left.play();
+  } else if (e.keyCode === 38) {
+    d = 'UP';
+  } else if (e.keyCode === 39) {
+    d = 'RIGHT';
+  } else if (e.keyCode === 40) {
+    d = 'DOWN';
+  }
+};
+
 // draw everything on canvas
 function draw() {
     // get ground on dom
@@ -39,7 +59,7 @@ function draw() {
     ctx.strokeStyle = 'red';
     ctx.strokeRect(snake[i].x, snake[i].y, box, box);
   };
-// get apple on dom
+// get apple on dom, make it appear randomly
   ctx.drawImage(foodImg, apple.x, apple.y);
 
   // get score on dom
