@@ -13,14 +13,14 @@ foodImg.src = './img/food.png';
 // create the snake
 let snake = [0];
 snake[0] = {
-    x: 9 * box,
-    y: 10 * box,
+  x: 9 * box,
+  y: 10 * box,
 };
 
 // create apples
 let apple = {
-    x: Math.floor(Math.random() * 17 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 3) * box,
+  x: Math.floor(Math.random() * 17 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 3) * box,
 };
 
 // create score
@@ -34,43 +34,63 @@ document.addEventListener('keydown', direction);
 // direction function
 function direction(e) {
   let key = e.keyCode;
-  if (e.keyCode == 37) {
+  if (e.keyCode == 37 && d != 'RIGHT') {
     d = 'LEFT';
-  } else if (e.keyCode == 38) {
+  } else if (e.keyCode == 38 && d != 'DOWN') {
     d = 'UP';
-  } else if (e.keyCode == 39) {
+  } else if (e.keyCode == 39 && d != 'LEFT') {
     d = 'RIGHT';
-  } else if (e.keyCode == 40) {
+  } else if (e.keyCode == 40 && d != 'UP') {
     d = 'DOWN';
   }
 };
 
+// check collision function
+function collision(head, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (head.x == array[i].x && head.y == array[i].y) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // draw everything on canvas
 function draw() {
-    // get ground on dom
+  // get ground on dom
   ctx.drawImage(ground, 0, 0);
 
   // get snake on dom
-  for ( let i = 0; i < snake.length; i++) {
-    ctx.fillStyle = ( i == 0 ) ? 'green' : 'white';
+  for (let i = 0; i < snake.length; i++) {
+    ctx.fillStyle = (i == 0) ? 'green' : 'white';
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
 
     ctx.strokeStyle = 'red';
     ctx.strokeRect(snake[i].x, snake[i].y, box, box);
   };
-// get apple on dom, make it appear randomly
+  // get apple on dom, make it appear randomly
   ctx.drawImage(foodImg, apple.x, apple.y);
 
   // old head position
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
 
-  // remove the tail
-  snake.pop();
+  // if snake eats an apple
+  if (snakeX == apple.x && snakeY == apple.y) {
+    score++;
+    apple = {
+      x: Math.floor(Math.random() * 17 + 1) * box,
+      y: Math.floor(Math.random() * 15 + 3) * box,
+    };
+    // don't remove tail
+  } else {
+    // remove the tail
+    snake.pop();
+  };
 
   // determine direction snake moves
-  if ( d == 'LEFT') snakeX -= box;
-  if ( d == 'UP') snakeY -= box;
+  if (d == 'LEFT') snakeX -= box;
+  if (d == 'UP') snakeY -= box;
   if (d == 'RIGHT') snakeX += box;
   if (d == 'DOWN') snakeY += box;
 
@@ -78,6 +98,12 @@ function draw() {
   let newHead = {
     x: snakeX,
     y: snakeY,
+  };
+
+  // game over
+  if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box ||
+    snakeY > 17 * box || collision(newHead, snake)) {
+    clearInterval(game);
   };
 
   snake.unshift(newHead);
