@@ -34,14 +34,13 @@ document.addEventListener('keydown', direction);
 // direction function
 function direction(e) {
   let key = e.keyCode;
-  if (e.keyCode === 37 && d != 'RIGHT') {
+  if (e.keyCode == 37) {
     d = 'LEFT';
-    left.play();
-  } else if (e.keyCode === 38) {
+  } else if (e.keyCode == 38) {
     d = 'UP';
-  } else if (e.keyCode === 39) {
+  } else if (e.keyCode == 39) {
     d = 'RIGHT';
-  } else if (e.keyCode === 40) {
+  } else if (e.keyCode == 40) {
     d = 'DOWN';
   }
 };
@@ -62,11 +61,31 @@ function draw() {
 // get apple on dom, make it appear randomly
   ctx.drawImage(foodImg, apple.x, apple.y);
 
+  // old head position
+  let snakeX = snake[0].x;
+  let snakeY = snake[0].y;
+
+  // remove the tail
+  snake.pop();
+
+  // determine direction snake moves
+  if ( d == 'LEFT') snakeX -= box;
+  if ( d == 'UP') snakeY -= box;
+  if (d == 'RIGHT') snakeX += box;
+  if (d == 'DOWN') snakeY += box;
+
+  // add new Head
+  let newHead = {
+    x: snakeX,
+    y: snakeY,
+  };
+
+  snake.unshift(newHead);
+
   // get score on dom
   ctx.fillStyle = 'white';
   ctx.font = '45px Changa one';
   ctx.fillText(score, 2 * box, 1.6 * box);
-
 };
 
 // call draw function every 100ms
