@@ -1,5 +1,5 @@
 {
-  "name": "snake-game",
+  "name": "4040404",
   "version": "1.0.0",
   "description": "A snake game programmed in javascript, from a tutorial by Christopher Okhravi.",
   "main": "script.js",
@@ -16,8 +16,5 @@
     "url": "https://github.com/Holgermueller/snake-game/issues"
   },
   "homepage": "https://github.com/Holgermueller/snake-game#readme",
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0"
-  }
+  "devDependencies": {}
 }
